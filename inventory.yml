@@ -1,0 +1,6 @@
+all:
+  hosts:
+    aci:
+      ansible_host: 192.168.33.10
+    bop:
+      ansible_host: 192.168.33.11

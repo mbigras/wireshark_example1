@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: False
+  tasks:
+    - name: add groups
+      group:
+        name: '{{ item.value.name }}'
+        gid: '{{ item.value.gid }}'
+      loop: '{{ group | dict2items }}'
+
+    - name: add users
+      user:
+        name: '{{ item.value.name }}'
+        uid: '{{ item.value.uid }}'
+        group: '{{ item.value.name }}'
+        groups: '{{ item.value.groups | default("") }}'
+      loop: '{{ user | dict2items }}'

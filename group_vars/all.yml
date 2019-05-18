@@ -1,0 +1,29 @@
+---
+user:
+  alice:
+    name: alice
+    uid: 1001
+    groups:
+      - ops
+  bob:
+    name: bob
+    uid: 1002
+    groups:
+      - ops
+  charles:
+    name: charles
+    uid: 1003
+group:
+  alice:
+    name: alice
+    gid: 1001
+  bob:
+    name: bob
+    gid: 1002
+  charles:
+    name: charles
+    gid: 1003
+  ops:
+    name: ops
+    gid: 31000
+    sudo: true

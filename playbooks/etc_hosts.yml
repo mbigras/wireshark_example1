@@ -1,0 +1,22 @@
+- hosts: all
+  become: yes
+  gather_facts: False
+  tasks:
+    - name: create an /etc/hosts file
+      copy:
+        content: |
+          127.0.0.1 localhost
+          127.0.1.1 {{ inventory_hostname }}
+
+          # The following lines are desirable for IPv6 capable hosts
+          ::1     localhost ip6-localhost ip6-loopback
+          ff02::1 ip6-allnodes
+          ff02::2 ip6-allrouters
+
+          {% for item in ansible_play_batch %}
+          {{ hostvars[item].ansible_host }} {{ item }}
+          {% endfor %}
+        dest: /etc/hosts
+        owner: root
+        group: root
+        mode: 0644
